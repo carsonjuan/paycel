@@ -1,0 +1,60 @@
+<div>
+    <h2 translate="paycelApp.smsRecibido.home.title">SmsRecibidos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="sms-recibido.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="paycelApp.smsRecibido.home.createLabel">
+                        Create new SmsRecibido
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="numeroTelefono"><span translate="paycelApp.smsRecibido.numeroTelefono">NumeroTelefono</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mensaje"><span translate="paycelApp.smsRecibido.mensaje">Mensaje</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fechaHoraRecibido"><span translate="paycelApp.smsRecibido.fechaHoraRecibido">FechaHoraRecibido</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="smsRecibido in vm.smsRecibidos track by smsRecibido.id">
+                    <td><a ui-sref="sms-recibido-detail({id:smsRecibido.id})">{{smsRecibido.id}}</a></td>
+                    <td>{{smsRecibido.numeroTelefono}}</td>
+                    <td>{{smsRecibido.mensaje}}</td>
+                    <td>{{smsRecibido.fechaHoraRecibido | date:'medium'}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="sms-recibido-detail({id:smsRecibido.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="sms-recibido.edit({id:smsRecibido.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="sms-recibido.delete({id:smsRecibido.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

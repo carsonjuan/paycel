@@ -1,0 +1,24 @@
+{
+    "paycelApp": {
+        "smsRecibido" : {
+            "home": {
+                "title": "SmsRecibidos",
+                "createLabel": "Crear nuevo SmsRecibido",
+                "createOrEditLabel": "Crear o editar SmsRecibido",
+                "search": "Search for SmsRecibido"
+            },
+            "created": "Un nuevo SmsRecibido ha sido creado con el identificador {{ param }}",
+            "updated": "Un SmsRecibido ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un SmsRecibido ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar SmsRecibido {{ id }}?"
+            },
+            "detail": {
+                "title": "SmsRecibido"
+            },
+            "numeroTelefono": "NumeroTelefono",
+            "mensaje": "Mensaje",
+            "fechaHoraRecibido": "FechaHoraRecibido"
+        }
+    }
+}

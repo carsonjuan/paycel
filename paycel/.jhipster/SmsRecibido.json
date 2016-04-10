@@ -1,0 +1,23 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "numeroTelefono",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mensaje",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaHoraRecibido",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20160407023317",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "sms_recibido",
+    "pagination": "infinite-scroll"
+}
