@@ -8,17 +8,21 @@ import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import carson.mobi.smsmanager.util.Logger;
+
 /**
  * Created by JuanIgnacio on 10/04/2016.
  */
 public class Manager extends BroadcastReceiver {
+
+    Logger logger = Logger.obtenerInstancia();
 
     final SmsManager smsManager = SmsManager.getDefault();
 
     public void enviarSms(String numero, String mensaje) {
 
         smsManager.sendTextMessage(numero, null, mensaje, null, null);
-        Log.i("sms.Manager", "SMS enviado a: " + numero + " Contenido: " + mensaje);
+        logger.log("SMS enviado a: " + numero + " mensjae: " + mensaje);
     }
 
     @Override
@@ -30,11 +34,11 @@ public class Manager extends BroadcastReceiver {
             if (bundle != null) {
                 final Object[] pdusObj = (Object[]) bundle.get("pdus");
                 for (int i = 0; i < pdusObj.length; i++) {
-                    SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
-                    String phoneNumber = currentMessage.getDisplayOriginatingAddress();
-                    String message = currentMessage.getDisplayMessageBody();
+                    SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
+                    String numeroTelefono = smsMessage.getDisplayOriginatingAddress();
+                    String mensaje = smsMessage.getDisplayMessageBody();
 
-                    Log.i("sms.Manager", "name: " + phoneNumber + "; Message: " + message);
+                    logger.log("SMS recivido de: " + numeroTelefono + " mensaje: " + mensaje);
 
                 }
             }
