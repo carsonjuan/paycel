@@ -3,6 +3,7 @@ package carson.mobi.smsmanager;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonIniciar;
     Button buttonParar;
 
+    Manager smsManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonIniciar.setOnClickListener(this);
         buttonParar.setOnClickListener(this);
 
+        smsManager = new Manager();
+
     }
 
     @Override
@@ -56,11 +61,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch(view.getId()){
             case R.id.button_iniciar:
+
+                IntentFilter filter = new IntentFilter();
+                filter.addAction("android.provider.Telephony.SMS_RECEIVED");
+                registerReceiver(smsManager, filter);
+
                 log("Server iniciado");
-                //log(Manager.enviarSms("1168808752", "Prueba"));
                 break;
 
             case R.id.button_parar:
+
+                unregisterReceiver(smsManager);
+
                 log("Server detenido");
                 break;
         }
